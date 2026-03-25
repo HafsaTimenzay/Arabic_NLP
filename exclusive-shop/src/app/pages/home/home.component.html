@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<div class="hero-section">
+  <div class="container hero-layout">
+    <app-sidebar></app-sidebar>
+    <app-hero-banner></app-hero-banner>
+  </div>
+</div>
+
+<main>
+  <app-flash-sales></app-flash-sales>
+  <app-categories></app-categories>
+  <app-best-selling></app-best-selling>
+  <div class="container"><app-music-banner></app-music-banner></div>
+  <app-explore-products></app-explore-products>
+  <app-new-arrival></app-new-arrival>
+</main>
+
+<app-footer></app-footer>
+
+<button class="back-to-top" (click)="scrollTop()" title="الرجوع للأعلى">
+  <i class="fas fa-arrow-up"></i>
+</button>

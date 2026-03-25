@@ -1,0 +1,15 @@
+<div class="hero-banner">
+  <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === activeSlide">
+    <div class="slide-content">
+      <p class="brand"><i class="fab fa-apple"></i> {{ slide.brand }}</p>
+      <h1 class="title">{{ slide.title }}</h1>
+      <a href="#" class="shop-now">تسوق الآن <i class="fas fa-arrow-left"></i></a>
+    </div>
+    <div class="slide-image">
+      <img [src]="slide.image" [alt]="slide.brand" />
+    </div>
+  </div>
+  <div class="dots">
+    <button *ngFor="let s of slides; let i = index" [class.active]="i === activeSlide" (click)="setSlide(i)"></button>
+  </div>
+</div>

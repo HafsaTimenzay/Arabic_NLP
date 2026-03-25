@@ -1,0 +1,27 @@
+<section class="best-selling-section">
+  <div class="container">
+    <div class="section-label">هذا الشهر</div>
+    <div class="section-header">
+      <h2 class="section-title" style="margin-bottom:0">الأكثر مبيعاً</h2>
+      <button class="btn-primary" style="margin-right:auto">عرض الكل</button>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let p of products">
+        <div class="image-wrap">
+          <span class="badge" [class.new]="p.badgeType==='new'" *ngIf="p.badge">{{p.badge}}</span>
+          <img [src]="p.image" [alt]="p.nameAr" />
+          <div class="actions">
+            <button><i class="fas fa-heart"></i></button>
+            <button><i class="fas fa-eye"></i></button>
+          </div>
+          <button class="add-to-cart" [routerLink]="['/product', p.id]">إضافة للسلة</button>
+        </div>
+        <div class="info">
+          <p class="name">{{ p.nameAr }}</p>
+          <div class="price"><span class="new">${{p.price}}</span><span class="old" *ngIf="p.oldPrice">${{p.oldPrice}}</span></div>
+          <div class="stars"><i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i><span>({{p.reviews}})</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

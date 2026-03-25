@@ -1,0 +1,177 @@
+<app-header></app-header>
+
+<main class="pd-page">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a routerLink="/">الحساب</a>
+      <span>/</span>
+      <a href="#">{{ product?.categoryAr }}</a>
+      <span>/</span>
+      <span class="current">{{ product?.nameAr }}</span>
+    </nav>
+
+    <!-- Product Layout -->
+    <div class="pd-layout" *ngIf="product">
+
+      <!-- Thumbnails -->
+      <div class="thumbnails">
+        <div
+          class="thumb"
+          *ngFor="let img of getImages(); let i = index"
+          [class.active]="selectedImage === i"
+          (click)="setImage(i)"
+        >
+          <img [src]="img" [alt]="product.nameAr" />
+        </div>
+      </div>
+
+      <!-- Main Image -->
+      <div class="main-image">
+        <img [src]="getImages()[selectedImage]" [alt]="product.nameAr" />
+      </div>
+
+      <!-- Info -->
+      <div class="pd-info">
+        <h1 class="pd-title">{{ product.nameAr }}</h1>
+
+        <div class="pd-meta">
+          <div class="stars">
+            <i class="fas fa-star" *ngFor="let s of getStars(product.rating)"></i>
+            <i class="far fa-star" *ngFor="let s of getEmptyStars(product.rating)"></i>
+          </div>
+          <span class="review-count">({{ product.reviews }} تقييم)</span>
+          <span class="divider">|</span>
+          <span class="in-stock"><i class="fas fa-circle"></i> متوفر في المخزن</span>
+        </div>
+
+        <div class="pd-price">${{ product.price }}.00</div>
+
+        <p class="pd-desc">{{ product.description || 'منتج عالي الجودة مع ضمان استرداد كامل خلال 30 يوماً. التوصيل مجاني للطلبات فوق $140.' }}</p>
+
+        <div class="pd-divider"></div>
+
+        <!-- Colors -->
+        <div class="pd-option" *ngIf="product.colors?.length">
+          <span class="option-label">الألوان:</span>
+          <div class="color-swatches">
+            <span
+              class="color-swatch"
+              *ngFor="let c of product.colors; let i = index"
+              [style.background]="c"
+              [class.active]="selectedColor === i"
+              (click)="selectedColor = i"
+            ></span>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="pd-option" *ngIf="product.sizes?.length">
+          <span class="option-label">المقاس:</span>
+          <div class="size-btns">
+            <button
+              *ngFor="let s of product.sizes"
+              class="size-btn"
+              [class.active]="selectedSize === s"
+              (click)="selectedSize = s"
+            >{{ s }}</button>
+          </div>
+        </div>
+
+        <!-- Qty + Buy -->
+        <div class="pd-actions">
+          <div class="qty-control">
+            <button class="qty-btn" (click)="changeQty(-1)"><i class="fas fa-minus"></i></button>
+            <span class="qty-val">{{ quantity }}</span>
+            <button class="qty-btn" (click)="changeQty(1)"><i class="fas fa-plus"></i></button>
+          </div>
+          <button class="btn-primary buy-now" (click)="addToCart()">
+            <ng-container *ngIf="!addedToCart">اشتري الآن</ng-container>
+            <ng-container *ngIf="addedToCart"><i class="fas fa-check"></i> تمت الإضافة!</ng-container>
+          </button>
+          <button class="wishlist-btn" [class.active]="addedToWishlist" (click)="toggleWishlist()" title="أضف للمفضلة">
+            <i class="fas fa-heart"></i>
+          </button>
+        </div>
+
+        <!-- Delivery info -->
+        <div class="delivery-cards">
+          <div class="delivery-card">
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>توصيل مجاني</strong>
+              <p>أدخل رمزك البريدي للتحقق من التوفر</p>
+            </div>
+          </div>
+          <div class="delivery-card">
+            <i class="fas fa-undo"></i>
+            <div>
+              <strong>إرجاع مجاني</strong>
+              <p>إرجاع مجاني خلال 30 يوماً. <a href="#">التفاصيل</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="reviews-section">
+      <h3 class="reviews-title">
+        <a href="#" class="see-all-reviews">عرض جميع التقييمات</a>
+      </h3>
+
+      <div class="review-card" *ngFor="let r of reviews">
+        <div class="review-avatar" [style.background]="r.avatarColor ?? '#DB4444'">
+          <span *ngIf="!r.avatar">{{ r.initials }}</span>
+          <img *ngIf="r.avatar" [src]="r.avatar" [alt]="r.author" />
+        </div>
+        <div class="review-body">
+          <div class="review-header">
+            <strong>{{ r.author }}</strong>
+            <span class="review-date">{{ r.date }}</span>
+          </div>
+          <div class="stars review-stars">
+            <i class="fas fa-star" *ngFor="let s of getStars(r.rating)"></i>
+            <i class="far fa-star" *ngFor="let s of getEmptyStars(r.rating)"></i>
+          </div>
+          <p class="review-text">{{ r.text }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Items -->
+    <div class="related-section">
+      <div class="section-label">منتجات ذات صلة</div>
+
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let p of relatedProducts">
+          <div class="image-wrap">
+            <span class="badge" [class.new]="p.badgeType==='new'" *ngIf="p.badge">{{ p.badge }}</span>
+            <img [src]="p.image" [alt]="p.nameAr" />
+            <div class="actions">
+              <button><i class="fas fa-heart"></i></button>
+              <button><i class="fas fa-eye"></i></button>
+            </div>
+            <button class="add-to-cart" [routerLink]="['/product', p.id]">إضافة للسلة</button>
+          </div>
+          <div class="info">
+            <p class="name">{{ p.nameAr }}</p>
+            <div class="price">
+              <span class="new">${{ p.price }}</span>
+              <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i>
+              <span>({{ p.reviews }})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

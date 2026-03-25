@@ -1,0 +1,18 @@
+<section class="categories-section">
+  <div class="container">
+    <div class="section-label">الفئات</div>
+    <div class="section-header">
+      <h2 class="section-title" style="margin-bottom:0">تصفح حسب الفئة</h2>
+      <div class="nav-arrows" style="margin-right:auto">
+        <button><i class="fas fa-arrow-right"></i></button>
+        <button><i class="fas fa-arrow-left"></i></button>
+      </div>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card" *ngFor="let cat of categories" [class.active]="cat.active" (click)="setActive(cat.id)">
+        <div class="icon-wrap"><i class="fas {{ cat.icon }}"></i></div>
+        <span class="cat-name">{{ cat.nameAr }}</span>
+      </div>
+    </div>
+  </div>
+</section>

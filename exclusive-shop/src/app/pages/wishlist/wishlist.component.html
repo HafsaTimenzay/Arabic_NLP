@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+<main class="wishlist-page">
+  <div class="container">
+
+    <!-- Header row -->
+    <div class="wishlist-header">
+      <h2 class="wishlist-title">المفضلة ({{ wishlistItems.length }})</h2>
+      <button class="btn-outline" (click)="moveAllToBag()">نقل الكل إلى السلة</button>
+    </div>
+
+    <!-- Wishlist grid -->
+    <div class="wl-grid" *ngIf="wishlistItems.length > 0">
+      <div class="wl-card" *ngFor="let p of wishlistItems">
+        <div class="wl-image-wrap">
+          <span class="badge" [class.new]="p.badgeType==='new'" *ngIf="p.badge">{{ p.badge }}</span>
+          <button class="delete-btn" (click)="removeFromWishlist(p.id)" title="حذف">
+            <i class="fas fa-trash"></i>
+          </button>
+          <img [src]="p.image" [alt]="p.nameAr" />
+          <button class="wl-add-cart" [routerLink]="['/product', p.id]">
+            <i class="fas fa-shopping-cart"></i> إضافة للسلة
+          </button>
+        </div>
+        <div class="wl-info">
+          <p class="wl-name">{{ p.nameAr }}</p>
+          <div class="wl-price">
+            <span class="new">${{ p.price }}</span>
+            <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-wishlist" *ngIf="wishlistItems.length === 0">
+      <i class="fas fa-heart-broken"></i>
+      <p>قائمة المفضلة فارغة</p>
+      <a routerLink="/" class="btn-primary">تسوق الآن</a>
+    </div>
+
+    <!-- Just For You -->
+    <div class="just-for-you">
+      <div class="jfy-header">
+        <div class="section-label">فقط لك</div>
+        <button class="btn-outline">عرض الكل</button>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let p of recommendedItems">
+          <div class="image-wrap">
+            <span class="badge" [class.new]="p.badgeType==='new'" *ngIf="p.badge">{{ p.badge }}</span>
+            <img [src]="p.image" [alt]="p.nameAr" />
+            <div class="actions">
+              <button title="عرض سريع"><i class="fas fa-eye"></i></button>
+            </div>
+            <button class="add-to-cart" [routerLink]="['/product', p.id]">إضافة للسلة</button>
+          </div>
+          <div class="info">
+            <p class="name">{{ p.nameAr }}</p>
+            <div class="price">
+              <span class="new">${{ p.price }}</span>
+              <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"     *ngFor="let s of getStars(p.rating)"></i>
+              <i class="far fa-star"     *ngFor="let s of getEmptyStars(p.rating)"></i>
+              <span>({{ p.reviews }})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

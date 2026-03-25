@@ -1,0 +1,45 @@
+<div class="announcement-bar">
+  <div class="container">
+    <p>تخفيضات الصيف على جميع ملابس السباحة والتوصيل السريع المجاني — خصم 50%!
+      <a href="#">تسوق الآن</a>
+    </p>
+    <select class="lang-select">
+      <option>العربية</option>
+      <option>English</option>
+      <option>Français</option>
+    </select>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="container header-inner">
+    <a routerLink="/" class="logo">Exclusive</a>
+
+    <nav class="main-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">الرئيسية</a>
+      <a href="#">تواصل معنا</a>
+      <a href="#">من نحن</a>
+      <a href="#">تسجيل</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="search-box">
+        <input type="text" placeholder="ماذا تبحث عنه؟" [(ngModel)]="searchQuery" (keyup.enter)="search()" />
+        <button (click)="search()"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="icon-group">
+        <a routerLink="/wishlist" class="icon-btn" title="المفضلة">
+          <i class="fas fa-heart"></i>
+          <span class="badge" *ngIf="wishlistCount > 0">{{ wishlistCount }}</span>
+        </a>
+        <a href="#" class="icon-btn" title="السلة">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+        </a>
+        <a href="#" class="icon-btn" title="الحساب">
+          <i class="fas fa-user"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

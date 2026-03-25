@@ -1,0 +1,47 @@
+<div class="services-strip">
+  <div class="container services-inner">
+    <div class="service-item">
+      <div class="service-icon"><i class="fas fa-truck"></i></div>
+      <div><h4>توصيل مجاني وسريع</h4><p>توصيل مجاني لجميع الطلبات فوق $140</p></div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon"><i class="fas fa-headset"></i></div>
+      <div><h4>خدمة العملاء 24/7</h4><p>دعم ودود على مدار الساعة</p></div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+      <div><h4>ضمان استرداد الأموال</h4><p>نسترد أموالك خلال 30 يوماً</p></div>
+    </div>
+  </div>
+</div>
+<footer class="main-footer">
+  <div class="container footer-grid">
+    <div class="footer-col brand-col">
+      <h3 class="footer-logo">Exclusive</h3>
+      <p class="footer-tagline">اشترك</p>
+      <p class="footer-desc">احصل على خصم 10% على أول طلب</p>
+      <div class="subscribe-box">
+        <button (click)="subscribe()"><i class="fas fa-paper-plane"></i></button>
+        <input type="email" placeholder="أدخل بريدك الإلكتروني" [(ngModel)]="email" (keyup.enter)="subscribe()" />
+      </div>
+    </div>
+    <div class="footer-col"><h4>الدعم</h4><ul><li *ngFor="let s of supportLinks"><a href="#">{{ s }}</a></li></ul></div>
+    <div class="footer-col"><h4>الحساب</h4><ul><li *ngFor="let l of accountLinks"><a href="#">{{ l }}</a></li></ul></div>
+    <div class="footer-col"><h4>روابط سريعة</h4><ul><li *ngFor="let l of quickLinks"><a href="#">{{ l }}</a></li></ul></div>
+    <div class="footer-col app-col">
+      <h4>تحميل التطبيق</h4>
+      <p class="app-desc">وفر $3 مع المستخدمين الجدد فقط</p>
+      <div class="app-stores">
+        <a href="#" class="store-btn"><i class="fab fa-google-play"></i><span><small>احصل عليه من</small>Google Play</span></a>
+        <a href="#" class="store-btn"><i class="fab fa-apple"></i><span><small>تحميل من</small>App Store</span></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container"><p>© جميع الحقوق محفوظة Exclusive {{ currentYear }}</p></div></div>
+</footer>

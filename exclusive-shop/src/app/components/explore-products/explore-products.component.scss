@@ -1,0 +1,9 @@
+.explore-section { padding: 60px 0; border-top: 1px solid var(--gray-4); }
+.section-header { display:flex; align-items:center; margin-bottom:40px; }
+.colors { display:flex; gap:6px; margin-top:6px; }
+.swatch {
+  width:14px; height:14px; border-radius:50%;
+  border:2px solid var(--white); box-shadow:0 0 0 1px var(--gray-4);
+  cursor:pointer; transition:transform var(--transition);
+  &:hover { transform:scale(1.2); }
+}

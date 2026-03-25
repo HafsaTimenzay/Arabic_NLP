@@ -1,0 +1,48 @@
+<section class="flash-sales-section">
+  <div class="container">
+    <div class="section-label">اليوم</div>
+    <div class="section-header">
+      <h2 class="section-title" style="margin-bottom:0">تخفيضات سريعة</h2>
+      <div class="countdown">
+        <div class="time-unit"><span class="label">أيام</span><span class="value">{{ pad(days) }}</span></div>
+        <span class="sep">:</span>
+        <div class="time-unit"><span class="label">ساعات</span><span class="value">{{ pad(hours) }}</span></div>
+        <span class="sep">:</span>
+        <div class="time-unit"><span class="label">دقائق</span><span class="value">{{ pad(minutes) }}</span></div>
+        <span class="sep">:</span>
+        <div class="time-unit"><span class="label">ثواني</span><span class="value">{{ pad(seconds) }}</span></div>
+      </div>
+      <div class="nav-arrows" style="margin-right:auto">
+        <button><i class="fas fa-arrow-right"></i></button>
+        <button><i class="fas fa-arrow-left"></i></button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let p of products">
+        <div class="image-wrap">
+          <span class="badge" [class.new]="p.badgeType==='new'" *ngIf="p.badge">{{ p.badge }}</span>
+          <img [src]="p.image" [alt]="p.nameAr" />
+          <div class="actions">
+            <button title="المفضلة"><i class="fas fa-heart"></i></button>
+            <button title="عرض سريع"><i class="fas fa-eye"></i></button>
+          </div>
+          <button class="add-to-cart" [routerLink]="['/product', p.id]">إضافة للسلة</button>
+        </div>
+        <div class="info">
+          <p class="name">{{ p.nameAr }}</p>
+          <div class="price">
+            <span class="new">${{ p.price }}</span>
+            <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
+          </div>
+          <div class="stars">
+            <i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i>
+            <span>({{ p.reviews }})</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="btn-primary">عرض جميع المنتجات</button>
+    </div>
+  </div>
+</section>
