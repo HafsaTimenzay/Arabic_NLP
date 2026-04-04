@@ -10,8 +10,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product-detail/product-detail.component').then(m => m.ProductDetailComponent)
   },
   {
+    path: 'products',
+    loadComponent: () => import('./components/explore-products/explore-products.component')
+      .then(m => m.ExploreProductsComponent)
+  },
+  { 
     path: 'wishlist',
-    loadComponent: () => import('./pages/wishlist/wishlist.component').then(m => m.WishlistComponent)
+    loadComponent: () => import('./pages/wishlist/wishlist.component')
+      .then(m => m.WishlistComponent)
   },
   { path: '**', redirectTo: '' }
 ];

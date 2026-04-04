@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Product, Review } from '../../models/product.model';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -24,19 +24,35 @@ export class ProductDetailComponent implements OnInit {
   addedToWishlist = false;
   addedToCart = false;
 
-  constructor(private route: ActivatedRoute, private ps: ProductService) {}
+  constructor(private route: ActivatedRoute, private api: ApiService) {}
 
-  ngOnInit() {
-    this.route.params.subscribe(p => {
-      const id = +p['id'];
-      this.product = this.ps.getProductById(id) ?? this.ps.getAllProducts()[0];
+ngOnInit() {
+  this.route.params.subscribe(p => {
+    const id = +p['id'];
+
+    this.api.getProductById(id).subscribe(res => {
+
+      this.product = {
+        id: res.id,
+        name: res.name,
+        nameAr: res.name_ar,
+        image: res.image,
+        images: res.images,
+        price: res.price,
+        oldPrice: res.old_price,
+        colors: res.colors,
+        sizes: res.sizes,
+        rating: res.rating ?? 0,
+        reviews: res.reviews ?? []
+      };
+
       this.selectedImage = 0;
       this.addedToCart = false;
       window.scrollTo(0, 0);
+
     });
-    this.relatedProducts = this.ps.getRelatedProducts();
-    this.reviews = this.ps.getReviews();
-  }
+  });
+}
 
   setImage(i: number) { this.selectedImage = i; }
 
@@ -46,8 +62,6 @@ export class ProductDetailComponent implements OnInit {
     return [img, img, img, img];
   }
 
-  getStars(r: number)      { return Array(Math.floor(r)).fill(0); }
-  getEmptyStars(r: number) { return Array(5 - Math.floor(r)).fill(0); }
 
   changeQty(delta: number) { this.quantity = Math.max(1, this.quantity + delta); }
   toggleWishlist()  { this.addedToWishlist = !this.addedToWishlist; }

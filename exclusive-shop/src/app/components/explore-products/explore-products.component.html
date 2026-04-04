@@ -22,7 +22,6 @@
         <div class="info">
           <p class="name">{{ p.nameAr }}</p>
           <div class="price"><span class="new">${{p.price}}</span><span class="old" *ngIf="p.oldPrice">${{p.oldPrice}}</span></div>
-          <div class="stars"><i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i><span>({{p.reviews}})</span></div>
           <div class="colors" *ngIf="p.colors?.length">
             <span class="swatch" *ngFor="let c of p.colors" [style.background]="c"></span>
           </div>
@@ -30,7 +29,7 @@
       </div>
     </div>
     <div style="display:flex;justify-content:center;margin-top:40px">
-      <button class="btn-primary">عرض جميع المنتجات</button>
+      <button routerLink="/products" class="btn-primary">عرض جميع المنتجات</button>
     </div>
   </div>
 </section>

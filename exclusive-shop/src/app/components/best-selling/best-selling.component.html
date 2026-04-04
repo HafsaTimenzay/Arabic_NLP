@@ -19,7 +19,6 @@
         <div class="info">
           <p class="name">{{ p.nameAr }}</p>
           <div class="price"><span class="new">${{p.price}}</span><span class="old" *ngIf="p.oldPrice">${{p.oldPrice}}</span></div>
-          <div class="stars"><i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i><span>({{p.reviews}})</span></div>
         </div>
       </div>
     </div>

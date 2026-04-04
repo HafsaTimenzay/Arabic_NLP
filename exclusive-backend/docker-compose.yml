@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: exclusive-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./exclusive.db
+      - SECRET_KEY=change-me-in-production-min-32-chars!!
+      - DEBUG=true
+      - ALLOWED_ORIGINS=http://localhost:4200,http://localhost:3000
+    volumes:
+      - ./exclusive.db:/app/exclusive.db
+      - ./uploads:/app/uploads
+    restart: unless-stopped

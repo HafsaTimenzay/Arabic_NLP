@@ -63,8 +63,6 @@
               <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
             </div>
             <div class="stars">
-              <i class="fas fa-star"     *ngFor="let s of getStars(p.rating)"></i>
-              <i class="far fa-star"     *ngFor="let s of getEmptyStars(p.rating)"></i>
               <span>({{ p.reviews }})</span>
             </div>
           </div>

@@ -37,10 +37,6 @@
         <h1 class="pd-title">{{ product.nameAr }}</h1>
 
         <div class="pd-meta">
-          <div class="stars">
-            <i class="fas fa-star" *ngFor="let s of getStars(product.rating)"></i>
-            <i class="far fa-star" *ngFor="let s of getEmptyStars(product.rating)"></i>
-          </div>
           <span class="review-count">({{ product.reviews }} تقييم)</span>
           <span class="divider">|</span>
           <span class="in-stock"><i class="fas fa-circle"></i> متوفر في المخزن</span>
@@ -132,10 +128,6 @@
             <strong>{{ r.author }}</strong>
             <span class="review-date">{{ r.date }}</span>
           </div>
-          <div class="stars review-stars">
-            <i class="fas fa-star" *ngFor="let s of getStars(r.rating)"></i>
-            <i class="far fa-star" *ngFor="let s of getEmptyStars(r.rating)"></i>
-          </div>
           <p class="review-text">{{ r.text }}</p>
         </div>
       </div>
@@ -162,10 +154,7 @@
               <span class="new">${{ p.price }}</span>
               <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
             </div>
-            <div class="stars">
-              <i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i>
               <span>({{ p.reviews }})</span>
-            </div>
           </div>
         </div>
       </div>

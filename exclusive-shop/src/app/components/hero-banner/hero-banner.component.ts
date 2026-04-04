@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class HeroBannerComponent implements OnInit, OnDestroy {
   slides = [
-    { brand: 'سلسلة iPhone 14', title: 'خصم يصل\nإلى 10%', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80' },
-    { brand: 'سامسونج جالاكسي', title: 'أفضل العروض\nهذا الأسبوع', image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&q=80' },
-    { brand: 'MacBook Pro', title: 'القوة تلتقي\nبالأناقة', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80' },
+    { brand: 'سلسلة iPhone 14', title: 'خصم يصل إلى 10%', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80' },
+    { brand: 'سامسونج جالاكسي', title: 'أفضل العروض هذا الأسبوع', image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&q=80' },
+    { brand: 'MacBook Pro', title: 'القوة تلتقي بالأناقة', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80' },
   ];
   activeSlide = 0;
   private timer: any;

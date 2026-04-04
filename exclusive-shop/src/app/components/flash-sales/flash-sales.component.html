@@ -35,14 +35,13 @@
             <span class="old" *ngIf="p.oldPrice">${{ p.oldPrice }}</span>
           </div>
           <div class="stars">
-            <i class="fas fa-star" *ngFor="let s of getStars(p.rating)"></i>
             <span>({{ p.reviews }})</span>
           </div>
         </div>
       </div>
     </div>
     <div class="cta-row">
-      <button class="btn-primary">عرض جميع المنتجات</button>
+      <button routerLink="/products" class="btn-primary">عرض جميع المنتجات</button>
     </div>
   </div>
 </section>

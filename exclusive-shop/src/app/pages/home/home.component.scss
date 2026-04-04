@@ -1,13 +1,11 @@
 .hero-section {
   border-bottom: 1px solid var(--gray-4);
-  padding: 24px 0;
 }
 
 .hero-layout {
-  display: flex;
+  display: block;
   gap: 32px;
   align-items: stretch;
-  min-height: 360px;
 }
 
 main { min-height: 100vh; }
